@@ -25,11 +25,9 @@
 html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font-size:14px}
 body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 80% 30% at 50% 0%,rgba(201,168,76,.06) 0%,transparent 70%)}
 
-/* SCREENS */
 .screen{position:fixed;top:0;left:0;right:0;bottom:var(--nav);overflow-y:auto;overflow-x:hidden;display:none;flex-direction:column;z-index:1;-webkit-overflow-scrolling:touch}
 .screen.active{display:flex}
 
-/* NAV */
 .nav{position:fixed;bottom:0;left:0;right:0;height:var(--nav);background:rgba(9,12,9,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-around;z-index:100;padding-bottom:env(safe-area-inset-bottom,0)}
 .nb{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;padding:8px 28px;user-select:none;-webkit-user-select:none}
 .ni{font-size:22px;filter:grayscale(1) opacity(.3);transition:filter .2s,transform .2s}
@@ -47,35 +45,25 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 .hijri{font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--text-dim);line-height:1.3}
 .greg{font-size:9px;color:var(--text-muted);margin-top:2px}
 
-/* CLOCK CARD — two rows stacked, NO overflow:hidden so nothing gets cut off */
+/* CLOCK CARD — just the clock, nothing else */
 .clock-card{
   background:var(--surface);
   border:1px solid var(--border);
   border-radius:18px;
-  padding:20px 22px;
+  padding:22px 22px 18px;
   margin:0 16px 12px;
-  display:block;
   position:relative;
 }
-.clk-l{display:block;padding-bottom:16px;margin-bottom:16px;border-bottom:1px solid var(--border)}
 .clk-time{
-  font-size:52px;font-weight:300;letter-spacing:-.04em;
-  line-height:1.1;color:var(--text);
-  display:block;width:100%;
+  font-size:58px;font-weight:300;
+  letter-spacing:-.04em;
+  line-height:1;
+  color:var(--text);
+  display:block;
 }
 .clk-colon{color:var(--gold);animation:blink 1s step-start infinite}
-.clk-ap{font-size:14px;color:var(--text-dim);margin-left:4px}
+.clk-ap{font-size:15px;color:var(--text-dim);margin-left:5px}
 .clk-loc{font-size:9px;color:var(--text-muted);margin-top:8px;display:block}
-/* Next prayer sits below as its own row */
-.next-r{
-  display:flex;align-items:center;justify-content:space-between;
-  width:100%;
-}
-.next-lbl{font-size:9px;letter-spacing:.25em;color:var(--text-muted);text-transform:uppercase;margin-bottom:4px}
-.next-name{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--gold);line-height:1}
-.next-r-right{text-align:right}
-.next-time{font-size:12px;color:var(--text-dim);margin-bottom:3px}
-.next-cd{font-size:11px;color:var(--gold-dim)}
 
 /* NOTIF */
 .notif-bar{background:var(--gold-glow);border:1px solid var(--gold-dim);border-radius:12px;padding:12px 16px;margin:0 16px 12px;display:flex;align-items:center;gap:12px;cursor:pointer}
@@ -172,23 +160,6 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 .mbtn.active{background:rgba(201,168,76,.1);border-color:var(--gold)}
 .mbtn.active .mn{color:var(--gold)}.mbtn.active .mr{color:var(--gold-dim)}
 
-/* INSTALL BANNER */
-.ibanner{position:fixed;bottom:var(--nav);left:0;right:0;background:linear-gradient(135deg,#1a2e1a,#0f1a0f);border-top:1px solid var(--gold-dim);padding:16px 16px 18px;z-index:200;transform:translateY(100%);transition:transform .4s cubic-bezier(.34,1.2,.64,1);box-shadow:0 -8px 32px rgba(0,0,0,.6)}
-.ibanner.show{transform:translateY(0)}
-.ib-top{display:flex;align-items:center;gap:12px;margin-bottom:12px}
-.ib-icon{width:46px;height:46px;border-radius:11px;background:#0d1a0d;border:1px solid var(--gold-dim);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0}
-.ib-ttl{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:600;margin-bottom:2px}
-.ib-sub{font-size:10px;color:var(--text-muted)}
-.ib-x{font-size:18px;color:var(--text-muted);cursor:pointer;padding:4px;margin-left:auto}
-.ib-steps{background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.15);border-radius:10px;padding:12px 14px;margin-bottom:12px}
-.ib-step{font-size:11px;color:var(--text-dim);margin-bottom:7px;display:flex;align-items:center;gap:9px}
-.ib-step:last-child{margin-bottom:0}
-.ib-n{width:18px;height:18px;border-radius:50%;background:var(--gold-dim);color:#000;font-size:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:700}
-.ib-and{display:none}.ib-ios{display:block}
-.android .ib-and{display:block}.android .ib-ios{display:none}
-.ib-btn{width:100%;padding:13px;background:var(--gold);color:#000;border:none;border-radius:10px;font-family:'DM Mono',monospace;font-size:12px;font-weight:500;letter-spacing:.1em;cursor:pointer;text-transform:uppercase}
-
-/* MISC */
 .madeby{text-align:center;font-size:9px;color:var(--text-muted);letter-spacing:.12em;padding:20px 0 6px;opacity:.35}
 .toast{position:fixed;top:20px;left:50%;transform:translateX(-50%) translateY(-90px);background:var(--surface2);border:1px solid var(--border2);border-radius:24px;padding:10px 20px;font-size:12px;color:var(--text);z-index:999;transition:transform .3s cubic-bezier(.34,1.56,.64,1);white-space:nowrap;box-shadow:0 8px 32px rgba(0,0,0,.5);pointer-events:none}
 .toast.show{transform:translateX(-50%) translateY(0)}
@@ -203,29 +174,6 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 </style>
 </head>
 <body>
-
-<!-- INSTALL BANNER -->
-<div class="ibanner" id="ibanner">
-  <div class="ib-top">
-    <div class="ib-icon">&#x1F54C;</div>
-    <div>
-      <div class="ib-ttl">Add to Home Screen</div>
-      <div class="ib-sub">Install Salah Tracker for the full experience</div>
-    </div>
-    <div class="ib-x" onclick="dismissInstall()">&#x2715;</div>
-  </div>
-  <div class="ib-steps ib-ios">
-    <div class="ib-step"><div class="ib-n">1</div>Tap the <strong style="color:var(--gold);margin:0 3px">Share</strong> button at the bottom of Safari</div>
-    <div class="ib-step"><div class="ib-n">2</div>Tap <strong style="color:var(--gold)">"Add to Home Screen"</strong></div>
-    <div class="ib-step"><div class="ib-n">3</div>Tap <strong style="color:var(--gold)">"Add"</strong> &#x2014; done!</div>
-  </div>
-  <div class="ib-steps ib-and">
-    <div class="ib-step"><div class="ib-n">1</div>Tap the <strong style="color:var(--gold)">3-dot menu</strong> in Chrome</div>
-    <div class="ib-step"><div class="ib-n">2</div>Tap <strong style="color:var(--gold)">"Add to Home screen"</strong></div>
-    <div class="ib-step"><div class="ib-n">3</div>Tap <strong style="color:var(--gold)">"Add"</strong> &#x2014; done!</div>
-  </div>
-  <button class="ib-btn" onclick="dismissInstall()">Got it</button>
-</div>
 
 <div class="offbadge" id="offbadge">&#x26A0; Offline &#x2014; using cached data</div>
 
@@ -244,17 +192,16 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
     </div>
   </div>
 
-  <!-- CLOCK CARD — big, clean, no Ramadan clutter -->
+  <!-- CLOCK — just the time, clean -->
   <div class="clock-card">
-    <div class="clk-l">
-      <div class="clk-time">
-        <span id="ch">12</span><span class="clk-colon">:</span><span id="cm">00</span><span class="clk-ap" id="cap">AM</span>
-      </div>
-      <div class="clk-loc" id="cloc">&#x1F4CD; Detecting location&hellip;</div>
+    <div class="clk-time">
+      <span id="ch">12</span><span class="clk-colon">:</span><span id="cm">00</span><span class="clk-ap" id="cap">AM</span>
+    </div>
+    <div class="clk-loc" id="cloc">&#x1F4CD; Detecting location&hellip;</div>
   </div>
 
   <!-- NOTIF -->
-  <div class="notif-bar" id="notifbar">
+  <div class="notif-bar gone" id="notifbar">
     <div style="font-size:18px">&#x1F514;</div>
     <div style="flex:1">
       <div style="font-size:11px;color:var(--gold);margin-bottom:2px">Enable Prayer Reminders</div>
@@ -272,7 +219,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 
   <div class="sec-lbl">Today's Prayers</div>
   <div class="plist" id="plist"></div>
-  <div class="madeby">Designed by Jawaad;</div>
+  <div class="madeby">Made with &#x2665;</div>
   <div style="height:12px"></div>
 </div>
 
@@ -283,7 +230,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
     <div class="ssub" id="hsub">Your prayer journal</div>
   </div>
   <div class="hlist" id="hlist"></div>
-  <div class="madeby">Designed by Jawaad;</div>
+  <div class="madeby">Made with &#x2665;</div>
   <div style="height:12px"></div>
 </div>
 
@@ -318,11 +265,10 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
     <div class="hm-ttl" style="margin-top:20px;margin-bottom:12px">Notification Settings</div>
     <div class="set-card" id="nset"></div>
   </div>
-  <div class="madeby">Designed by Jawaad;</div>
+  <div class="madeby">Made with &#x2665;</div>
   <div style="height:12px"></div>
 </div>
 
-<!-- NAV -->
 <nav class="nav">
   <div class="nb active" data-t="today" onclick="go('today')">
     <div class="ni">&#x1F54C;</div><div class="nl">Today</div>
@@ -345,13 +291,16 @@ const PRAYERS=[
   {id:'maghrib', name:'Maghrib', meaning:'Sunset',    cls:'maghrib'},
   {id:'isha',    name:'Isha',    meaning:'Night',     cls:'isha'},
 ];
+
+// Fajr/Isha angles (degrees below horizon)
 const METHODS={
-  ISNA:     {fajr:-15,   isha:-15,   name:'ISNA',               region:'North America'},
-  MWL:      {fajr:-18,   isha:-17,   name:'Muslim World League', region:'Europe / Far East'},
-  GULF:     {fajr:-19.5, isha:-17.5, name:'Gulf / Arabian',      region:'Saudi Arabia & Gulf'},
-  KARACHI:  {fajr:-18,   isha:-18,   name:'Karachi / UIS',       region:'Indo-Pakistan'},
-  AUSTRALIA:{fajr:-19.5, isha:-17,   name:'AFIC',                region:'Australia'},
+  ISNA:     {fajr:15,   isha:15,   name:'ISNA',                region:'North America'},
+  MWL:      {fajr:18,   isha:17,   name:'Muslim World League', region:'Europe / Far East'},
+  GULF:     {fajr:19.5, isha:17.5, name:'Gulf / Arabian',      region:'Saudi Arabia & Gulf'},
+  KARACHI:  {fajr:18,   isha:18,   name:'Karachi / UIS',       region:'Indo-Pakistan'},
+  AUSTRALIA:{fajr:19.5, isha:17,   name:'AFIC',                region:'Australia'},
 };
+
 const VERSES=[
   {t:'"Indeed, prayer has been decreed upon the believers a decree of specified times."',s:'— Quran 4:103'},
   {t:'"Establish prayer and give zakah, and whatever good you put forward for yourselves — you will find it with Allah."',s:'— Quran 2:110'},
@@ -365,6 +314,7 @@ const VERSES=[
   {t:'"So remember Me; I will remember you."',s:'— Quran 2:152'},
   {t:'"And He found you lost and guided you."',s:'— Quran 93:7'},
 ];
+
 const HI_MONTHS=["Muharram","Safar","Rabi' al-Awwal","Rabi' al-Thani","Jumada al-Awwal","Jumada al-Thani","Rajab","Sha'ban","Ramadan","Shawwal","Dhu al-Qi'dah","Dhu al-Hijjah"];
 const DAYS=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 const DS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
@@ -373,8 +323,8 @@ const MO=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec
 // STORAGE
 function pad(n){return String(n).padStart(2,'0')}
 function dkey(d=new Date()){return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`}
-function gd(){try{return JSON.parse(localStorage.getItem('salah_v9')||'{}')}catch{return {}}}
-function sd(v){try{localStorage.setItem('salah_v9',JSON.stringify(v))}catch{}}
+function gd(){try{return JSON.parse(localStorage.getItem('salah_v10')||'{}')}catch{return {}}}
+function sd(v){try{localStorage.setItem('salah_v10',JSON.stringify(v))}catch{}}
 function checks(k=dkey()){return gd()[k]||{}}
 function toggle(pid){const d=gd(),k=dkey();if(!d[k])d[k]={};d[k][pid]=!d[k][pid];sd(d);return d[k][pid]}
 function gn(){try{return JSON.parse(localStorage.getItem('s_notif')||'{}')}catch{return {}}}
@@ -396,46 +346,89 @@ function toHijri(dt){
   return {day,month,year,mname:HI_MONTHS[month-1]||''};
 }
 
-// PRAYER TIMES
-let lat=null,lng=null,city='',times={},ntH={};
+// ── PRAYER TIME CALCULATION ──────────────────────────────────────────
+// Uses local timezone offset so times are always correct for the device
+const RAD = Math.PI/180;
+const DEG = 180/Math.PI;
 
-function calcTimes(la,lo,date,mk){
-  const m=METHODS[mk]||METHODS.ISNA;
-  const D=(date.getTime()/86400000)-10957.5;
-  const g=(357.529+0.98560028*D)%360;
-  const q=(280.459+0.98564736*D)%360;
-  const L=(q+1.915*Math.sin(g*Math.PI/180)+0.02*Math.sin(2*g*Math.PI/180))%360;
-  const e=23.439-0.00000036*D;
-  const RA=Math.atan2(Math.cos(e*Math.PI/180)*Math.sin(L*Math.PI/180),Math.cos(L*Math.PI/180))*180/Math.PI;
-  const dec=Math.asin(Math.sin(e*Math.PI/180)*Math.sin(L*Math.PI/180));
-  const EqT=q-RA,tz=-date.getTimezoneOffset()/60;
-  const noon=12+tz-lo/15-EqT/15;
-  function ha(ang){
-    const c=(Math.cos(ang*Math.PI/180)-Math.sin(la*Math.PI/180)*Math.sin(dec))/(Math.cos(la*Math.PI/180)*Math.cos(dec));
-    if(Math.abs(c)>1)return null;
-    return Math.acos(c)*180/Math.PI/15;
-  }
-  function asrH(){const x=1+Math.tan(Math.abs(la*Math.PI/180-dec));return Math.atan(1/x)*180/Math.PI}
-  function toD(base,off,sign=1){
-    if(off===null)return null;
-    const t=base+sign*off,h=Math.floor(t),mm=Math.round((t-h)*60);
-    const r=new Date(date);r.setHours(h,mm,0,0);return r;
-  }
-  return{
-    fajr:   toD(noon,ha(m.fajr),-1),
-    sunrise:toD(noon,ha(-0.833),-1),
-    dhuhr:  toD(noon,0),
-    asr:    toD(noon,asrH(),1),
-    maghrib:toD(noon,ha(-0.833),1),
-    isha:   toD(noon,ha(m.isha),1),
+function julianDay(date){
+  const Y=date.getFullYear(),M=date.getMonth()+1,D=date.getDate();
+  return 367*Y - Math.floor(7*(Y+Math.floor((M+9)/12))/4)
+    + Math.floor(275*M/9) + D + 1721013.5
+    + 0.5 - date.getTimezoneOffset()/(60*24);
+}
+
+function sunPosition(jd){
+  const n = jd - 2451545.0;
+  const L = (280.460 + 0.9856474*n) % 360;
+  const g = (357.528 + 0.9856003*n) % 360;
+  const lam = L + 1.915*Math.sin(g*RAD) + 0.020*Math.sin(2*g*RAD);
+  const eps = 23.439 - 0.0000004*n;
+  const sinDec = Math.sin(eps*RAD)*Math.sin(lam*RAD);
+  const dec = Math.asin(sinDec)*DEG;
+  const RA = Math.atan2(Math.cos(eps*RAD)*Math.sin(lam*RAD), Math.cos(lam*RAD))*DEG/15;
+  // Equation of time in hours
+  const EqT = (L/15 - ((RA%24)+24)%24);
+  return {dec, EqT};
+}
+
+function hourAngle(lat, dec, elev){
+  // elev = altitude angle (positive up, negative below horizon)
+  const num = Math.sin(elev*RAD) - Math.sin(lat*RAD)*Math.sin(dec*RAD);
+  const den = Math.cos(lat*RAD)*Math.cos(dec*RAD);
+  const cos_ha = num/den;
+  if(cos_ha > 1 || cos_ha < -1) return null;
+  return Math.acos(cos_ha)*DEG/15; // hours
+}
+
+function asrHourAngle(lat, dec){
+  // Shadow length factor = 1 (Shafi/standard)
+  const target = Math.atan(1 + Math.tan(Math.abs((lat - dec)*RAD)))*DEG;
+  return hourAngle(lat, dec, target);
+}
+
+function minsToDate(baseDate, decimalHours){
+  const d = new Date(baseDate);
+  const totalMins = Math.round(decimalHours * 60);
+  const h = Math.floor(totalMins/60) % 24;
+  const m = totalMins % 60;
+  d.setHours(h, m, 0, 0);
+  return d;
+}
+
+function calcTimes(lat, lng, date, methodKey){
+  const method = METHODS[methodKey] || METHODS.ISNA;
+  const jd = julianDay(date);
+  const {dec, EqT} = sunPosition(jd);
+
+  // Solar noon in local time (hours)
+  const tz = -date.getTimezoneOffset()/60;
+  const noon = 12 - EqT - lng/15 + tz;
+
+  const haSunrise = hourAngle(lat, dec, -0.833); // standard sunrise/sunset
+  const haFajr    = hourAngle(lat, dec, -method.fajr);
+  const haIsha    = hourAngle(lat, dec, -method.isha);
+  const haAsr     = asrHourAngle(lat, dec);
+
+  return {
+    fajr:    haFajr    != null ? minsToDate(date, noon - haFajr)    : null,
+    sunrise: haSunrise != null ? minsToDate(date, noon - haSunrise) : null,
+    dhuhr:                       minsToDate(date, noon + 0.067),    // +4 min after solar noon
+    asr:     haAsr     != null ? minsToDate(date, noon + haAsr)     : null,
+    maghrib: haSunrise != null ? minsToDate(date, noon + haSunrise) : null,
+    isha:    haIsha    != null ? minsToDate(date, noon + haIsha)    : null,
   };
 }
 
 function fmt(d){
-  if(!d)return '--:--';
-  let h=d.getHours(),m=d.getMinutes(),ap=h>=12?'PM':'AM';
-  h=h%12||12;return `${h}:${pad(m)} ${ap}`;
+  if(!d) return '--:--';
+  let h=d.getHours(), m=d.getMinutes(), ap=h>=12?'PM':'AM';
+  h = h%12 || 12;
+  return `${h}:${pad(m)} ${ap}`;
 }
+
+// LOCATION
+let lat=null, lng=null, city='', times={}, ntH={};
 
 function getLocation(){
   if(navigator.geolocation){
@@ -443,12 +436,12 @@ function getLocation(){
       p=>{lat=p.coords.latitude;lng=p.coords.longitude;reverseGeo();refresh();},
       ()=>{
         const c=JSON.parse(localStorage.getItem('s_loc')||'null');
-        if(c){lat=c.lat;lng=c.lng;city=c.city;document.getElementById('cloc').textContent='\u{1F4CD} '+city;}
-        else{lat=43.6532;lng=-79.3832;city='Toronto, ON';document.getElementById('cloc').textContent='\u{1F4CD} Toronto, ON';}
+        if(c){lat=c.lat;lng=c.lng;city=c.city;document.getElementById('cloc').textContent='📍 '+city;}
+        else{lat=43.6532;lng=-79.3832;city='Toronto, ON';document.getElementById('cloc').textContent='📍 Toronto, ON';}
         refresh();
       }
     );
-  }else{lat=43.6532;lng=-79.3832;city='Toronto, ON';refresh();}
+  } else {lat=43.6532;lng=-79.3832;city='Toronto, ON';refresh();}
 }
 
 async function reverseGeo(){
@@ -457,19 +450,21 @@ async function reverseGeo(){
     const d=await r.json();
     city=d.address.city||d.address.town||d.address.village||'Your Location';
     const s=d.address.state_code||d.address.state||'';
-    if(s)city+=', '+s;
-    document.getElementById('cloc').textContent='\u{1F4CD} '+city;
+    if(s) city+=', '+s;
+    document.getElementById('cloc').textContent='📍 '+city;
     localStorage.setItem('s_loc',JSON.stringify({lat,lng,city}));
   }catch{
     const c=JSON.parse(localStorage.getItem('s_loc')||'null');
-    if(c){city=c.city;document.getElementById('cloc').textContent='\u{1F4CD} '+city;}
+    if(c){city=c.city;document.getElementById('cloc').textContent='📍 '+city;}
   }
 }
 
 function refresh(){
-  if(!lat)return;
+  if(!lat) return;
   times=calcTimes(lat,lng,new Date(),gm());
-  renderPrayers();updateNext();scheduleNotif();
+  renderPrayers();
+  markCurrentPrayer();
+  scheduleNotif();
 }
 
 function renderDates(){
@@ -485,29 +480,31 @@ function renderVerse(){
 }
 
 function updateClock(){
-  const n=new Date();let h=n.getHours(),m=n.getMinutes(),ap=h>=12?'PM':'AM';
+  const n=new Date();
+  let h=n.getHours(),m=n.getMinutes(),ap=h>=12?'PM':'AM';
   h=h%12||12;
   document.getElementById('ch').textContent=pad(h);
   document.getElementById('cm').textContent=pad(m);
   document.getElementById('cap').textContent=ap;
 }
 
-// function updateNext(){
-//   if(!times.fajr)return;
-//   const now=new Date(),ord=['fajr','dhuhr','asr','maghrib','isha'];
-//   let next=null,nid='';
-//   for(const p of ord){if(times[p]&&times[p]>now){next=times[p];nid=p;break;}}
-//   if(!next&&lat){const nt=calcTimes(lat,lng,new Date(now.getTime()+86400000),gm());next=nt.fajr;nid='fajr';}
-//   if(!next)return;
-//   const p=PRAYERS.find(x=>x.id===nid);
-//   document.getElementById('nname').textContent=p?p.name:nid;
-//   document.getElementById('ntime').textContent=fmt(next);
-//   const diff=Math.max(0,Math.floor((next-now)/1000));
-//   const hh=Math.floor(diff/3600),mm=Math.floor((diff%3600)/60),ss=diff%60;
-//   document.getElementById('ncd').textContent=hh>0?`in ${hh}h ${mm}m`:mm>0?`in ${mm}m ${ss}s`:`in ${ss}s`;
-//   document.querySelectorAll('.pc').forEach(c=>c.classList.remove('current'));
-//   const card=document.getElementById('pc-'+nid);if(card)card.classList.add('current');
-// }
+function markCurrentPrayer(){
+  if(!times.fajr) return;
+  const now=new Date();
+  document.querySelectorAll('.pc').forEach(c=>c.classList.remove('current'));
+  // Find which prayer window we're currently in
+  const order=['fajr','dhuhr','asr','maghrib','isha'];
+  let current=null;
+  for(let i=0;i<order.length;i++){
+    const t=times[order[i]];
+    const next=times[order[i+1]];
+    if(t && t<=now && (!next||next>now)){current=order[i];break;}
+  }
+  if(current){
+    const card=document.getElementById('pc-'+current);
+    if(card) card.classList.add('current');
+  }
+}
 
 function renderMethods(){
   const cur=gm(),el=document.getElementById('mgrid');el.innerHTML='';
@@ -525,7 +522,14 @@ function renderPrayers(){
     const done=!!c[p.id],time=times[p.id]?fmt(times[p.id]):'--:--';
     const div=document.createElement('div');
     div.className='pc'+(done?' checked':'');div.id='pc-'+p.id;
-    div.innerHTML=`<div class="pdot ${p.cls}"></div><div class="pinfo"><div class="pname">${p.name}</div><div class="ptime">${time}</div><div class="pmean">${p.meaning}</div></div><div class="pcheck"><span class="chk-ico">&#x2713;</span></div>`;
+    div.innerHTML=`
+      <div class="pdot ${p.cls}"></div>
+      <div class="pinfo">
+        <div class="pname">${p.name}</div>
+        <div class="ptime">${time}</div>
+        <div class="pmean">${p.meaning}</div>
+      </div>
+      <div class="pcheck"><span class="chk-ico">&#x2713;</span></div>`;
     div.addEventListener('click',e=>{
       const rip=document.createElement('span');rip.className='ripple';
       const rect=div.getBoundingClientRect(),sz=Math.max(rect.width,rect.height);
@@ -533,10 +537,10 @@ function renderPrayers(){
       div.appendChild(rip);setTimeout(()=>rip.remove(),500);
       const now=toggle(p.id);
       div.classList.toggle('checked',now);
-      toast(now?`\u2713 ${p.name} marked as prayed`:`${p.name} unmarked`);
+      toast(now?`\u2713 ${p.name} marked`:`${p.name} unmarked`);
       if(now&&PRAYERS.every(x=>checks()[x.id])){
         setTimeout(()=>{
-          toast("All 5 prayers done! Masha'Allah!");
+          toast("All 5 done! Masha'Allah!");
           const b=document.createElement('div');b.className='burst';b.textContent='\u2B50';
           document.body.appendChild(b);setTimeout(()=>b.remove(),1200);
         },300);
@@ -544,19 +548,29 @@ function renderPrayers(){
     });
     list.appendChild(div);
   });
+  markCurrentPrayer();
 }
 
 function renderHistory(){
   const data=gd(),keys=Object.keys(data).sort((a,b)=>b.localeCompare(a)).slice(0,30);
   const list=document.getElementById('hlist');list.innerHTML='';
-  if(!keys.length){list.innerHTML='<div style="text-align:center;padding:56px 0;color:var(--text-muted);font-size:12px;line-height:2">No history yet.<br>Start checking off your prayers!</div>';return;}
+  if(!keys.length){
+    list.innerHTML='<div style="text-align:center;padding:56px 0;color:var(--text-muted);font-size:12px;line-height:2">No history yet.<br>Start checking off your prayers!</div>';
+    return;
+  }
   let pf=0;
   keys.forEach(k=>{
     const[y,mo,d]=k.split('-').map(Number),dt=new Date(y,mo-1,d);
     const c=data[k]||{},cnt=PRAYERS.filter(p=>c[p.id]).length,win=cnt===5;
     if(win)pf++;
     const div=document.createElement('div');div.className='hday'+(win?' win':'');
-    div.innerHTML=`<div class="dchk">${win?'&#x2713;':''}</div><div class="dinfo"><div class="dname">${DS[dt.getDay()]}, ${MO[mo-1]} ${d}</div><div class="dprayers">${PRAYERS.map(p=>`<div class="mp"><div class="mdot ${p.cls}${c[p.id]?' on':''}"></div><div class="mlbl">${p.name[0]}</div></div>`).join('')}</div></div><div class="dcnt">${cnt}/5</div>`;
+    div.innerHTML=`
+      <div class="dchk">${win?'&#x2713;':''}</div>
+      <div class="dinfo">
+        <div class="dname">${DS[dt.getDay()]}, ${MO[mo-1]} ${d}</div>
+        <div class="dprayers">${PRAYERS.map(p=>`<div class="mp"><div class="mdot ${p.cls}${c[p.id]?' on':''}"></div><div class="mlbl">${p.name[0]}</div></div>`).join('')}</div>
+      </div>
+      <div class="dcnt">${cnt}/5</div>`;
     list.appendChild(div);
   });
   document.getElementById('hsub').textContent=`${pf} perfect day${pf!==1?'s':''} recorded`;
@@ -577,6 +591,7 @@ function renderStreak(){
   document.getElementById('sr').textContent=rate+'%';
   document.getElementById('sp').textContent=pf;
   document.getElementById('sflame').innerHTML=cur>=7?'&#x1F525;':cur>=3?'&#x2B50;':'&#x1F54C;';
+
   const hm=document.getElementById('hmap');hm.innerHTML='';
   ['S','M','T','W','T','F','S'].forEach(d=>{const el=document.createElement('div');el.className='hm-dl';el.textContent=d;hm.appendChild(el);});
   const today=new Date(),cells=[];
@@ -588,7 +603,8 @@ function renderStreak(){
     el.className='hm-c '+(dt>today?'fut':c===0?'':c===1?'c1':c===2?'c2':c===3?'c3':c===4?'c4':'c5');
     hm.appendChild(el);
   });
-  renderMethods();renderNotifSettings();
+  renderMethods();
+  renderNotifSettings();
 }
 
 async function askNotif(){
@@ -598,7 +614,7 @@ async function askNotif(){
     const s=gn();PRAYERS.forEach(p=>{if(s[p.id]===undefined)s[p.id]=true;});sn(s);
     document.getElementById('notifbar').classList.add('gone');
     toast('Prayer reminders enabled!');scheduleNotif();renderNotifSettings();
-  }else{toast('Enable notifications in device settings');}
+  } else {toast('Enable notifications in device settings');}
 }
 
 function scheduleNotif(){
@@ -606,9 +622,10 @@ function scheduleNotif(){
   const s=gn(),now=new Date();
   Object.values(ntH).forEach(clearTimeout);ntH={};
   PRAYERS.forEach(p=>{
-    if(!s[p.id])return;const t=times[p.id];if(!t)return;
+    if(!s[p.id])return;
+    const t=times[p.id];if(!t)return;
     const diff=t-now;
-    if(diff>0&&diff<86400000)ntH[p.id]=setTimeout(()=>{
+    if(diff>0&&diff<86400000) ntH[p.id]=setTimeout(()=>{
       new Notification(`Time for ${p.name}`,{body:`${p.name} \u2014 ${city||'your location'}`,tag:p.id});
     },diff);
   });
@@ -629,49 +646,29 @@ function renderNotifSettings(){
   });
 }
 
-// PWA LOGO — golden mosque on dark green-black background
+// PWA LOGO
 function setupPWA(){
   const c=document.createElement('canvas');c.width=512;c.height=512;
   const ctx=c.getContext('2d');
-  // Dark green-black background with rounded corners
   const bg=ctx.createRadialGradient(256,256,0,256,256,360);
   bg.addColorStop(0,'#0d1a0d');bg.addColorStop(1,'#050a05');
   ctx.fillStyle=bg;
   ctx.beginPath();
-  if(ctx.roundRect)ctx.roundRect(0,0,512,512,100);
-  else{ctx.rect(0,0,512,512);}
+  if(ctx.roundRect) ctx.roundRect(0,0,512,512,100);
+  else ctx.rect(0,0,512,512);
   ctx.fill();
-  // Gold border ring
   ctx.strokeStyle='#c9a84c';ctx.lineWidth=14;ctx.globalAlpha=0.8;
   ctx.beginPath();
-  if(ctx.roundRect)ctx.roundRect(10,10,492,492,94);
-  else{ctx.rect(10,10,492,492);}
+  if(ctx.roundRect) ctx.roundRect(10,10,492,492,94);
+  else ctx.rect(10,10,492,492);
   ctx.stroke();ctx.globalAlpha=1;
-  // Inner subtle glow
-  const glow=ctx.createRadialGradient(256,200,0,256,200,240);
-  glow.addColorStop(0,'rgba(201,168,76,0.12)');glow.addColorStop(1,'transparent');
-  ctx.fillStyle=glow;ctx.fillRect(0,0,512,512);
-  // Mosque emoji — large and centered
   ctx.font='260px serif';ctx.textAlign='center';ctx.textBaseline='middle';
   ctx.fillText('\u{1F54C}',256,230);
-  // "Salah" text in gold below
-  ctx.fillStyle='#c9a84c';
-  ctx.font='bold 68px serif';
-  ctx.fillText('Salah',256,430);
-  // Dot in gold
-  ctx.fillStyle='#e8c96b';
-  ctx.font='bold 68px serif';
-  ctx.fillText('.',316,430);
+  ctx.fillStyle='#c9a84c';ctx.font='bold 68px serif';
+  ctx.fillText('Salah.',256,430);
   const url=c.toDataURL('image/png');
   document.getElementById('pwa-icon').href=url;
-  const manifest={
-    name:'Salah Tracker',short_name:'Salah',
-    description:'Daily prayer tracker',
-    start_url:'.',display:'standalone',
-    background_color:'#090c09',theme_color:'#090c09',
-    orientation:'portrait',
-    icons:[{src:url,sizes:'512x512',type:'image/png',purpose:'any maskable'}]
-  };
+  const manifest={name:'Salah Tracker',short_name:'Salah',description:'Daily prayer tracker',start_url:'.',display:'standalone',background_color:'#090c09',theme_color:'#090c09',orientation:'portrait',icons:[{src:url,sizes:'512x512',type:'image/png',purpose:'any maskable'}]};
   const blob=new Blob([JSON.stringify(manifest)],{type:'application/json'});
   document.getElementById('pwa-manifest').href=URL.createObjectURL(blob);
 }
@@ -680,47 +677,44 @@ function setupOffline(){
   window.addEventListener('offline',()=>document.getElementById('offbadge').classList.add('show'));
   window.addEventListener('online',()=>{document.getElementById('offbadge').classList.remove('show');toast('Back online');getLocation();});
   if('serviceWorker' in navigator){
-    const sw=`const C='salah-v9';self.addEventListener('install',e=>e.waitUntil(caches.open(C).then(c=>c.addAll(['.']))));self.addEventListener('fetch',e=>e.respondWith(fetch(e.request).catch(()=>caches.match(e.request))));`;
+    const sw=`const C='salah-v10';self.addEventListener('install',e=>e.waitUntil(caches.open(C).then(c=>c.addAll(['.']))));self.addEventListener('fetch',e=>e.respondWith(fetch(e.request).catch(()=>caches.match(e.request))));`;
     const blob=new Blob([sw],{type:'application/javascript'});
     navigator.serviceWorker.register(URL.createObjectURL(blob)).catch(()=>{});
   }
 }
 
-function isIOS(){return /iphone|ipad|ipod/i.test(navigator.userAgent)}
-function isAnd(){return /android/i.test(navigator.userAgent)}
-function isStandalone(){return window.navigator.standalone||window.matchMedia('(display-mode:standalone)').matches}
-function checkInstall(){
-  if(isStandalone()||localStorage.getItem('s_dismissed'))return;
-  if(!isIOS()&&!isAnd())return;
-  const b=document.getElementById('ibanner');
-  if(isAnd())b.classList.add('android');
-  setTimeout(()=>b.classList.add('show'),2500);
-}
-function dismissInstall(){document.getElementById('ibanner').classList.remove('show');localStorage.setItem('s_dismissed','1');}
-
 let toastT;
 function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>el.classList.remove('show'),2500);}
+
 function go(tab){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));
   document.getElementById('s-'+tab).classList.add('active');
   document.querySelector(`[data-t="${tab}"]`).classList.add('active');
-  if(tab==='history')renderHistory();
-  if(tab==='streak')renderStreak();
+  if(tab==='history') renderHistory();
+  if(tab==='streak') renderStreak();
 }
 
 function init(){
-  setupPWA();setupOffline();
-  renderDates();renderVerse();
-  updateClock();renderPrayers();
-  getLocation();checkInstall();
-  if('Notification' in window&&Notification.permission==='granted')
-    document.getElementById('notifbar').classList.add('gone');
-  document.getElementById('notifbar').addEventListener('click',askNotif);
-  setInterval(()=>{updateClock();},1000);
-  const now=new Date(),mid=new Date(now);mid.setHours(24,0,0,0);
-  setTimeout(()=>{renderDates();renderVerse();refresh();},mid-now);
+  setupPWA();
+  setupOffline();
+  renderDates();
+  renderVerse();
+  updateClock();
+  renderPrayers();
+  getLocation();
+  // Show notif bar only if not granted and not standalone
+  if('Notification' in window && Notification.permission!=='granted'){
+    document.getElementById('notifbar').classList.remove('gone');
+    document.getElementById('notifbar').addEventListener('click', askNotif);
+  }
+  setInterval(()=>{updateClock();markCurrentPrayer();}, 1000);
+  // Refresh times at midnight
+  const now=new Date(), mid=new Date(now);
+  mid.setHours(24,0,0,0);
+  setTimeout(()=>{renderDates();renderVerse();refresh();}, mid-now);
 }
+
 init();
 </script>
 </body>
