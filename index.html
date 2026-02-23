@@ -251,17 +251,6 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
         <span id="ch">12</span><span class="clk-colon">:</span><span id="cm">00</span><span class="clk-ap" id="cap">AM</span>
       </div>
       <div class="clk-loc" id="cloc">&#x1F4CD; Detecting location&hellip;</div>
-    </div>
-    <div class="next-r">
-      <div>
-        <div class="next-lbl">Next Prayer</div>
-        <div class="next-name" id="nname">&#x2014;</div>
-      </div>
-      <div class="next-r-right">
-        <div class="next-time" id="ntime">&#x2014;</div>
-        <div class="next-cd" id="ncd">&#x2014;</div>
-      </div>
-    </div>
   </div>
 
   <!-- NOTIF -->
@@ -503,22 +492,22 @@ function updateClock(){
   document.getElementById('cap').textContent=ap;
 }
 
-function updateNext(){
-  if(!times.fajr)return;
-  const now=new Date(),ord=['fajr','dhuhr','asr','maghrib','isha'];
-  let next=null,nid='';
-  for(const p of ord){if(times[p]&&times[p]>now){next=times[p];nid=p;break;}}
-  if(!next&&lat){const nt=calcTimes(lat,lng,new Date(now.getTime()+86400000),gm());next=nt.fajr;nid='fajr';}
-  if(!next)return;
-  const p=PRAYERS.find(x=>x.id===nid);
-  document.getElementById('nname').textContent=p?p.name:nid;
-  document.getElementById('ntime').textContent=fmt(next);
-  const diff=Math.max(0,Math.floor((next-now)/1000));
-  const hh=Math.floor(diff/3600),mm=Math.floor((diff%3600)/60),ss=diff%60;
-  document.getElementById('ncd').textContent=hh>0?`in ${hh}h ${mm}m`:mm>0?`in ${mm}m ${ss}s`:`in ${ss}s`;
-  document.querySelectorAll('.pc').forEach(c=>c.classList.remove('current'));
-  const card=document.getElementById('pc-'+nid);if(card)card.classList.add('current');
-}
+// function updateNext(){
+//   if(!times.fajr)return;
+//   const now=new Date(),ord=['fajr','dhuhr','asr','maghrib','isha'];
+//   let next=null,nid='';
+//   for(const p of ord){if(times[p]&&times[p]>now){next=times[p];nid=p;break;}}
+//   if(!next&&lat){const nt=calcTimes(lat,lng,new Date(now.getTime()+86400000),gm());next=nt.fajr;nid='fajr';}
+//   if(!next)return;
+//   const p=PRAYERS.find(x=>x.id===nid);
+//   document.getElementById('nname').textContent=p?p.name:nid;
+//   document.getElementById('ntime').textContent=fmt(next);
+//   const diff=Math.max(0,Math.floor((next-now)/1000));
+//   const hh=Math.floor(diff/3600),mm=Math.floor((diff%3600)/60),ss=diff%60;
+//   document.getElementById('ncd').textContent=hh>0?`in ${hh}h ${mm}m`:mm>0?`in ${mm}m ${ss}s`:`in ${ss}s`;
+//   document.querySelectorAll('.pc').forEach(c=>c.classList.remove('current'));
+//   const card=document.getElementById('pc-'+nid);if(card)card.classList.add('current');
+// }
 
 function renderMethods(){
   const cur=gm(),el=document.getElementById('mgrid');el.innerHTML='';
@@ -728,7 +717,7 @@ function init(){
   if('Notification' in window&&Notification.permission==='granted')
     document.getElementById('notifbar').classList.add('gone');
   document.getElementById('notifbar').addEventListener('click',askNotif);
-  setInterval(()=>{updateClock();updateNext();},1000);
+  setInterval(()=>{updateClock();},1000);
   const now=new Date(),mid=new Date(now);mid.setHours(24,0,0,0);
   setTimeout(()=>{renderDates();renderVerse();refresh();},mid-now);
 }
