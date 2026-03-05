@@ -413,8 +413,12 @@ function asrHourAngle(lat, dec){
 
 function minsToDate(baseDate, decimalHours){
   const d = new Date(baseDate);
-  const totalMins = Math.round(decimalHours * 60);
-  const h = Math.floor(totalMins/60) % 24;
+  // Normalize to 0-24 range safely handling negatives and overflow
+  let hours = decimalHours;
+  while(hours < 0) hours += 24;
+  while(hours >= 24) hours -= 24;
+  const totalMins = Math.round(hours * 60);
+  const h = Math.floor(totalMins / 60) % 24;
   const m = totalMins % 60;
   d.setHours(h, m, 0, 0);
   return d;
@@ -576,35 +580,44 @@ function renderPrayers(){
 }
 
 function renderHistory(){
-  const data=gd(),keys=Object.keys(data).sort((a,b)=>b.localeCompare(a)).slice(0,30);
+  const data=gd();
   const list=document.getElementById('hlist');list.innerHTML='';
-  if(!keys.length){
-    list.innerHTML='<div style="text-align:center;padding:56px 0;color:var(--text-muted);font-size:12px;line-height:2">No history yet.<br>Start checking off your prayers!</div>';
-    return;
+  const today=new Date();
+  const days=[];
+  for(let i=0;i<30;i++){
+    const dt=new Date(today);
+    dt.setDate(today.getDate()-i);
+    days.push(dt);
   }
   let pf=0;
-  keys.forEach(k=>{
-    const[y,mo,d]=k.split('-').map(Number),dt=new Date(y,mo-1,d);
-    const c=data[k]||{},cnt=PRAYERS.filter(p=>c[p.id]).length,win=cnt===5;
+  days.forEach(dt=>{
+    const k=dkey(dt);
+    const c=data[k]||{};
+    const cnt=PRAYERS.filter(p=>c[p.id]).length;
+    const win=cnt===5;
     if(win)pf++;
-    const div=document.createElement('div');div.className='hday'+(win?' win':'');
+    const div=document.createElement('div');
+    div.className='hday'+(win?' win':'');
     div.style.cursor='pointer';
-    const dateLabel=`${DS[dt.getDay()]}, ${MO[mo-1]} ${d}`;
+    const isToday=k===dkey(today);
+    const isYest=k===dkey(new Date(today.getTime()-86400000));
+    const label=isToday?'Today':isYest?'Yesterday':`${DS[dt.getDay()]}, ${MO[dt.getMonth()]} ${dt.getDate()}`;
     div.innerHTML=`
       <div class="dchk">${win?'&#x2713;':''}</div>
       <div class="dinfo">
-        <div class="dname">${dateLabel}</div>
+        <div class="dname">${label}</div>
         <div class="dprayers">${PRAYERS.map(p=>`<div class="mp"><div class="mdot ${p.cls}${c[p.id]?' on':''}"></div><div class="mlbl">${p.name[0]}</div></div>`).join('')}</div>
       </div>
       <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
         <div class="dcnt">${cnt}/5</div>
         <div style="font-size:9px;color:var(--gold-dim)">Edit &#x203A;</div>
       </div>`;
-    div.addEventListener('click', () => openEditModal(k, dateLabel));
+    div.addEventListener('click',()=>openEditModal(k,label));
     list.appendChild(div);
   });
   document.getElementById('hsub').textContent=`${pf} perfect day${pf!==1?'s':''} recorded`;
 }
+
 
 function renderStreak(){
   const data=gd(),keys=Object.keys(data).sort();
